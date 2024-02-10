@@ -1,0 +1,1 @@
+# nebulactl-setup-action
