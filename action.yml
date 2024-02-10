@@ -1,0 +1,11 @@
+name: 'nebulactl-setup-action'
+description: >
+   Install and setup nebulactl for use in other actions 
+inputs:
+  version:
+    description: 'The version of nebulactl to setup.'
+    required: false
+    default: 'latest'
+runs:
+  using: 'node16'
+  main: './dist/main.js'
