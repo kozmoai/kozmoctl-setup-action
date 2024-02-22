@@ -1,9 +1,9 @@
-name: 'nebulactl-setup-action'
+name: 'kozmoctl-setup-action'
 description: >
-   Install and setup nebulactl for use in other actions 
+   Install and setup kozmoctl for use in other actions 
 inputs:
   version:
-    description: 'The version of nebulactl to setup.'
+    description: 'The version of kozmoctl to setup.'
     required: false
     default: 'latest'
 runs:

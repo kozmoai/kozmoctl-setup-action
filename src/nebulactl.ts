@@ -10,8 +10,8 @@ import { Error, isError } from './error';
 // optionally be specified in the action's version parameter.
 const versionPrefix = "v";
 
-export async function getNebulactl(version: string): Promise<string|Error> {
-  const binaryPath = tc.find('nebulactl', version, os.arch());
+export async function getKozmoctl(version: string): Promise<string|Error> {
+  const binaryPath = tc.find('kozmoctl', version, os.arch());
   if (binaryPath !== '') {
     core.info(`Found in cache @ ${binaryPath}`);
     return binaryPath;
@@ -23,27 +23,27 @@ export async function getNebulactl(version: string): Promise<string|Error> {
       return downloadURL
   }
 
-  core.info(`Downloading nebulactl version "${version}" from ${downloadURL}`);
+  core.info(`Downloading kozmoctl version "${version}" from ${downloadURL}`);
   const downloadPath = await tc.downloadTool(downloadURL);
-  core.info(`Successfully downloaded nebulactl version "${version}" from ${downloadURL}`);
+  core.info(`Successfully downloaded kozmoctl version "${version}" from ${downloadURL}`);
 
-  core.info('Extracting nebulactl...');
+  core.info('Extracting kozmoctl...');
   const extractPath = await tc.extractTar(downloadPath);
-  core.info(`Successfully extracted nebulactl to ${extractPath}`);
+  core.info(`Successfully extracted kozmoctl to ${extractPath}`);
 
-  core.info('Adding nebulactl to the cache...');
+  core.info('Adding kozmoctl to the cache...');
   const cacheDir = await tc.cacheDir(
     path.join(extractPath),
-    'nebulactl',
+    'kozmoctl',
     version,
     os.arch()
   );
-  core.info(`Successfully cached nebulactl to ${cacheDir}`);
+  core.info(`Successfully cached kozmoctl to ${cacheDir}`);
 
   return cacheDir;
 }
 
-// getDownloadURL resolves nebulactl's Github download URL for the
+// getDownloadURL resolves kozmoctl's Github download URL for the
 // current architecture and platform.
 async function getDownloadURL(version: string): Promise<string|Error> {
   let architecture = '';
@@ -53,7 +53,7 @@ async function getDownloadURL(version: string): Promise<string|Error> {
       break;
     default:
       return {
-        message: `The "${os.arch()}" architecture is not supported with a nebulactl release.`
+        message: `The "${os.arch()}" architecture is not supported with a kozmoctl release.`
       };
   }
   let platform = '';
@@ -63,17 +63,17 @@ async function getDownloadURL(version: string): Promise<string|Error> {
       break;
     default:
       return {
-        message: `The "${os.platform()}" platform is not supported with a nebulactl release.`
+        message: `The "${os.platform()}" platform is not supported with a kozmoctl release.`
       };
   }
 
-  const assetName = `nebulactl_${platform}_${architecture}.tar.gz`
+  const assetName = `kozmoctl_${platform}_${architecture}.tar.gz`
   const octokit = new Octokit();
   const {data: releases} = await octokit.request(
     'GET /repos/{owner}/{repo}/releases',
     {
-      owner: 'datafabriclab',
-      repo: 'nebulactl',
+      owner: 'kozmoai',
+      repo: 'kozmoctl',
     }
   );
   switch (version) {
@@ -96,7 +96,7 @@ async function getDownloadURL(version: string): Promise<string|Error> {
       }
   }
   return {
-    message: `Unable to find nebulactl version "${version}" for platform "${platform}" and architecture "${architecture}".`
+    message: `Unable to find kozmoctl version "${version}" for platform "${platform}" and architecture "${architecture}".`
   };
 }
 

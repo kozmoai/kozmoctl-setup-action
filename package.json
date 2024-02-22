@@ -1,21 +1,21 @@
 {
-  "name": "nebulactl-setup-action",
+  "name": "kozmoctl-setup-action",
   "version": "1.0.0",
-  "description": "Install and setup nebulactl for use in other actions ",
+  "description": "Install and setup kozmoctl for use in other actions ",
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/datafabriclab/nebulactl-setup-action.git"
+    "url": "git+https://github.com/kozmoai/kozmoctl-setup-action.git"
   },
-  "author": "datafabric",
+  "author": "kozmoai",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/datafabriclab/nebulactl-setup-action/issues"
+    "url": "https://github.com/kozmoai/kozmoctl-setup-action/issues"
   },
-  "homepage": "https://github.com/datafabriclab/nebulactl-setup-action#readme",
+  "homepage": "https://github.com/kozmoai/kozmoctl-setup-action#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
